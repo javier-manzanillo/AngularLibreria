@@ -1,0 +1,48 @@
+<div class="row mt-5">
+  <div class="container">
+    <div class="col mt-4">
+      <div form-inline>
+        <div class="col-4">
+          <input class="form-control float-left mr-sm-2" type="text" placeholder="Buscar por titulo" [(ngModel)]="buscarTitulo"  (input)='Search(buscarTitulo)'>
+          <!-- <input type="text" class="form-control float-left mr-sm-2" name="filterTitulo" placeholder="Search..." [(ngModel)]="filterTitulo"> -->
+        </div>
+        <div class="col-4 float-right mb-3">
+          <button class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#modalLibro"><i class="fas fa-save"></i> Agregar Libro</button>
+        </div>
+      </div>
+      <div class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Sipnosis</th>
+              <th scope="col">No. Paginas </th>
+              <th scope="col">Fecha Creacion</th>
+              <th scope="col">Fecha Publicacion</th>
+              <th scope="col">Estado</th>
+              <th scope="col">URL Images</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let libro of libros; index as i">
+            <th scope="row">{{i+1}}</th><!--Contadorde la tabla-->
+              <td>{{libro.titulo}}</td>
+              <td>{{libro.autor}}</td>
+              <td>{{libro.sipnosis | truncate:35}}</td>
+              <td>{{libro.cantpaginas}}</td>
+              <td>{{libro.fechaCreacion}}</td>
+              <td>{{libro.fechaPublicacion}}</td>
+              <td>{{libro.status}}</td>
+              <td>{{libro.imagePath | truncate:30}}</td>
+              <td><button class="btn btn-secondary" (click)="onPreUpdate(libro)" data-toggle="modal" data-target="#modalLibro" ><i class="fas fa-user-edit"></i> Actualizar</button></td>
+              <td><button class="btn btn-danger" (click)="onDeleteLibro(libro.id)"><i class="fa fa-trash"></i>Eliminar</button></td>
+           </tr>
+        </tbody>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal></app-modal>
